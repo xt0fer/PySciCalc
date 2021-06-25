@@ -22,6 +22,12 @@ def performCalcLoop(calc):
         elif choice == 'subtract':
             a, b = getTwoNumbers()
             displayResult(calc.subtract(a, b))
+        elif choice == 'multiply':
+            a, b = getTwoNumbers()
+            displayResult(calc.multiply(a, b))
+        elif choice == 'divide':
+            a, b = getTwoNumbers()
+            displayResult(calc.divide(a, b))
         else:
             print("That is not a valid input.")
 
