@@ -19,6 +19,9 @@ def performCalcLoop(calc):
         elif choice == 'add':
             a, b = getTwoNumbers()
             displayResult(calc.add(a, b))
+        elif choice == 'subtract':
+            a, b = getTwoNumbers()
+            displayResult(calc.subtract(a, b))
         else:
             print("That is not a valid input.")
 
@@ -26,6 +29,7 @@ def performCalcLoop(calc):
 # main start
 def main():
     calc = Calculator()
+    print('this is the best calculator :)')
     performCalcLoop(calc)
     print("Done Calculating.")
 

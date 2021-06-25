@@ -6,7 +6,7 @@ class Calculator:
     def add(self, x, y):
         return x + y
 
-    def sub(self, x, y):
-        return 0
+    def subtract(self, x, y):
+        return x - y
 
 # add lots more methods to this calculator class.
