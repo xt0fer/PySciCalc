@@ -18,34 +18,31 @@ def getTwoNumbers():
     return a, b
 
 def getOneNumber():
-<<<<<<< HEAD
-    a = float(input('please enter value\n'))
+    a = float(input('please enter value\n:'))
     #trig functions must be in radians with math.trig functions
     #want to store a radian into a, and if it's a degree, convert it to radian
 
     return a
 
-=======
-    a = float(input('number? '))
-    return a
->>>>>>> cd050b4c0fd9720bd3e4ec52a27bcd3c9f47d67e
 
-def displayResult(x: float):
-    print(x)
+def displayResult(x):
+    if x == 'err':
+        print(x)
+    else:
+        print(float(x))
 
-<<<<<<< HEAD
 def switchUnitsMode():
     a = 'Degrees'
     b = 'Radians'
 
-=======
 def currentState():
     return 
->>>>>>> cd050b4c0fd9720bd3e4ec52a27bcd3c9f47d67e
 
 def performCalcLoop(calc):
     while True:
         choice = input("\n: ").lower()
+        
+        
         if choice == 'q':
             break  # user types q to quit calulator.
         elif choice == 'help':
@@ -58,7 +55,6 @@ def performCalcLoop(calc):
         elif choice == 'add':
             a, b = getTwoNumbers()
             displayResult(calc.add(a, b))
-<<<<<<< HEAD
 
         #trig functions    
         elif choice == 'sin':
@@ -79,7 +75,6 @@ def performCalcLoop(calc):
         elif choice == 'inverse tan':
             a = getOneNumber()
             displayResult(calc.inverse_tan(a))
-=======
         elif choice == 'subtract':
             a, b = getTwoNumbers()
             displayResult(calc.subtract(a, b))
@@ -95,7 +90,6 @@ def performCalcLoop(calc):
         elif choice == 'square root':
             a = getOneNumber()
             displayResult(calc.square_root(a))
->>>>>>> cd050b4c0fd9720bd3e4ec52a27bcd3c9f47d67e
 
         else:
             print("That is not a valid input.")

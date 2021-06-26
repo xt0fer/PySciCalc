@@ -15,7 +15,11 @@ class Calculator:
         return x*y
 
     def divide(self, x, y):
-        return x / y
+        if y == 0:
+            return('err')
+        else:
+            return x / y
+
 
     def square(self, x):
         return x * x
