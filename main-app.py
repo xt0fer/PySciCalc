@@ -8,6 +8,7 @@ def getTwoNumbers():
 
 def getOneNumber():
     a = float(input('number? '))
+    return a
 
 def displayResult(x: float):
     print(x, "\n")
@@ -31,11 +32,11 @@ def performCalcLoop(calc):
             a, b = getTwoNumbers()
             displayResult(calc.divide(a, b))
         elif choice == 'square':
-            a, = getOneNumber()
-            displayResult(calc.square(a, ))
-        elif choice == 'squart root':
-            a,  = getOneNumber()
-            displayResult(calc.square_root(a, ))
+            a = getOneNumber()
+            displayResult(calc.square(a))
+        elif choice == 'square root':
+            a = getOneNumber()
+            displayResult(calc.square_root(a))
 
         else:
             print("That is not a valid input.")
