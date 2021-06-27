@@ -4,7 +4,7 @@ from test.error_colors import ErrorColors
 from calculator import Calculator
 
 
-class TestCalcTwoArgs(TestCase):
+class TestCalcDisplaySwitch(TestCase):
 
     def __switch_test(self, calc_object, tests):  # This tests switch display WITH NO arguments
         for expected_mode in tests:
