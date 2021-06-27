@@ -1,8 +1,10 @@
+from display_options import DisplayOptions
 from calculator import Calculator
 from calculator_scientific import sci_Calculator
 
 #chuck was here
 
+currentState = 0
 
 def getTwoNumbers():
     a = input("first number? ")
@@ -18,30 +20,57 @@ def getTwoNumbers():
     return a, b
 
 def getOneNumber():
-<<<<<<< HEAD
     a = float(input('please enter value\n'))
     #trig functions must be in radians with math.trig functions
     #want to store a radian into a, and if it's a degree, convert it to radian
 
     return a
 
-=======
-    a = float(input('number? '))
+def getMenuOption():
+    a = str(input("please enter a menu option"))
     return a
->>>>>>> cd050b4c0fd9720bd3e4ec52a27bcd3c9f47d67e
+
+currentDisplayMode = 'decimal'
+
+
+
 
 def displayResult(x: float):
     print(x)
 
-<<<<<<< HEAD
-def switchUnitsMode():
-    a = 'Degrees'
-    b = 'Radians'
+def displayDisplay(x):
+    print(x)
 
-=======
-def currentState():
-    return 
->>>>>>> cd050b4c0fd9720bd3e4ec52a27bcd3c9f47d67e
+def main_menu(calDisplay):
+    print('\n1. Switch Display by Choice: \n   display options: decimal, octal, binary, hexadecimal\n   or iterate')
+    print('\n2. Switch Trig calculations to Degrees or Radians')
+    print('\n3. Do Math')
+    print('\n4. Quit')
+    while True:
+        menuChoice = input('\n: ').lower()
+        if menuChoice == '4' or 'quit' or 'q':
+            break
+        elif menuChoice == '1':
+            a = getMenuOption()
+            currentMode = displayDisplay(calDisplay.switch_modes(a))
+
+        elif menuChoice == '2':
+            a = getMenuOption()
+            currentTrig = displayDisplay(calDisplay.switch_trig(a)) 
+        elif menuChoice == '3':
+           pass
+        else:
+            print('this is not a valid input')
+
+
+
+
+
+
+
+        
+
+
 
 def performCalcLoop(calc):
     while True:
@@ -58,7 +87,6 @@ def performCalcLoop(calc):
         elif choice == 'add':
             a, b = getTwoNumbers()
             displayResult(calc.add(a, b))
-<<<<<<< HEAD
 
         #trig functions    
         elif choice == 'sin':
@@ -79,7 +107,6 @@ def performCalcLoop(calc):
         elif choice == 'inverse tan':
             a = getOneNumber()
             displayResult(calc.inverse_tan(a))
-=======
         elif choice == 'subtract':
             a, b = getTwoNumbers()
             displayResult(calc.subtract(a, b))
@@ -95,7 +122,8 @@ def performCalcLoop(calc):
         elif choice == 'square root':
             a = getOneNumber()
             displayResult(calc.square_root(a))
->>>>>>> cd050b4c0fd9720bd3e4ec52a27bcd3c9f47d67e
+       
+
 
         else:
             print("That is not a valid input.")
@@ -106,15 +134,20 @@ def performCalcLoop(calc):
 
 # main start
 def main():
-    current_display_result = 0
+
+    currentTrig = 'degrees'
+    currentDisplayMode = 'decimal'
+
     calc = Calculator()
-    print('\n\nthis is the best calculator :)\n')
-    displayResult(0)
+    calDisplay = DisplayOptions()
     
+    main_menu()  
     
     performCalcLoop(calc)
     
+    print('\n\nthis is the best calculator :)\n')
     
+
     print("Done Calculating.")
 
 
