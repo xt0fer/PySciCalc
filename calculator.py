@@ -69,13 +69,13 @@ class Calculator:
         if mode == "degrees":
             return math.asin(math.radians(x))
         else:
-            return math.asin(x))
+            return math.asin(x)
 
     def inverse_cosine(self, x, mode):
         if mode == "degrees":
             return math.acos(math.radians(x))
         else:
-            return math.asin(x)
+            return math.acos(x)
 
     def inverse_tangent(self,x, mode):
         if mode == "degrees":
