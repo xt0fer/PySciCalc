@@ -1,9 +1,11 @@
 import math
 
 class Calculator:
-
+    
+    
     def __init__(self):
-        pass
+        self.current_state= None
+        
 
     def add(self, x, y):
         return x + y
