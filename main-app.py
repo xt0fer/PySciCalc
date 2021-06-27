@@ -1,4 +1,5 @@
-from _typeshed import HasFileno
+
+
 from math import sqrt
 from calculator import Calculator
 
@@ -35,10 +36,9 @@ def displayMenu():
 
 def performCalcLoop(calc):
     while True:
+        displayMenu()
 
-    
-
-        choice = input("Hello Choose and Operation?")
+        choice = input("Hello make a selection ")
         if choice == 'q':
             break  # user types q to quit calulator.
         elif choice == '+':
