@@ -1,2 +1,0 @@
-from test.runtests.test_one_arg_calc import TestCalcOneArg
-from test.runtests.test_two_args_calc import TestCalcTwoArgs
