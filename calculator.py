@@ -61,19 +61,20 @@ class Calculator:
         return self.display_mode
 
     def switch_display_mode(self, mode: str=None):
-        if not mode:  # If no mode given
+        if mode is None:  # If no mode given
             self.display_q.rotate()
             self.display_mode = self.display_q[0]
+            return self.show_current_display_mode()
         else:
-            self.__set_new_display_mode(mode)
+            return self.__set_new_display_mode(mode)
     
     def __set_new_display_mode(self, mode):
         if mode not in ('bin', 'oct', 'hex', 'dec'):
-            self.set_error('please enter valid display mode: bin | oct | hex | dec')
-        else:
-            while self.show_current_display_mode() != mode:
-                self.display_q.rotate()
-                self.display_mode = self.display_q[0]
+            return self.set_error('please enter valid display mode: bin | oct | hex | dec')
+        while self.show_current_display_mode() != mode:
+            self.display_q.rotate()
+            self.display_mode = self.display_q[0]
+        return self.show_current_display_mode()
 
     # ----------------- TRIG METHODS ------------------
     def sine(self, x):
