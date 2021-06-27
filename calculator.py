@@ -35,10 +35,19 @@ class Calculator:
 
     def invert_sign(self, x):
         return -x 
+    
+    def clear(self):
+        self.display = 0
 
-        
+    def display_error(self):         
+        self.diplay = "Err"
     
+    def set_display(self,x):
+        self.display = x
     
+    def get_display(self):
+        return self.display
+
     
 
 # add lots more methods to this calculator class.
