@@ -20,6 +20,7 @@ def displayMenu():
     print("----------------------------")
 while True:
     displayMenu()
+
     
     menuSelection = input("Enter your Option: ")
 
