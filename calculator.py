@@ -25,9 +25,20 @@ class Calculator:
     def show_current_display_mode(self):
         return self.display_mode
 
-    def switch_display_mode(self):
-        self.display_q.rotate()
-        self.display_mode = self.display_q[0]
+    def switch_display_mode(self, mode: str=None):
+        if not mode:  # If no mode given
+            self.display_q.rotate()
+            self.display_mode = self.display_q[0]
+        else:
+            self.__set_new_display_mode(mode)
+    
+    def __set_new_display_mode(self, mode):
+        if mode not in ('bin', 'oct', 'hex', 'dec'):
+            print('please enter valid display mode: bin | oct | hex | dec')
+        else:
+            while self.show_current_display_mode() != mode:
+                self.display_q.rotate()
+                self.display_mode = self.display_q[0]
 
     def multiply(self, x, y):
         return x * y
