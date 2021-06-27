@@ -43,7 +43,7 @@ class TestCalcTwoArgs(TestCase):
     def test_divide(self):
         c = Calculator()
         self._test(c.divide, [
-            (1, 2, 0.5), (12, 3, 4), (9, 2, 4.5), (7, 7, 1), (4, 0, 'err'),
+            (1, 2, 0.5), (12, 3, 4), (9, 2, 4.5), (7, 7, 1), (4, 0, 'Err: cannot divide by zero'),
             (-10, 10, -1), (30, -3, -10), (-200, -2, 100), (-6, 2, -3)
         ])
 
