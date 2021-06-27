@@ -1,10 +1,10 @@
 import math
 
+
 class Calculator:
     
-    
     def __init__(self):
-        self.current_state= None
+        self.current_state = None
         
 
     def add(self, x, y):
@@ -22,16 +22,11 @@ class Calculator:
         else:
             return x / y
 
-
     def square(self, x):
         return x * x
 
     def square_root(self, x):
         return math.sqrt(x)
-
-    
-
-# add lots more methods to this calculator class.
 
     #trig functions
 
