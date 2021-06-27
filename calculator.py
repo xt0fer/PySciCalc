@@ -9,6 +9,7 @@ class Calculator:
         self.display_q = deque(['dec', 'bin', 'oct', 'hex'])
         self.display_mode = self.display_q[0]
         self.memory = 0
+        self.trig_unit = deque(['deg', 'rad'])
 
     # ---------------------------------------------------
     # *************** CORE FEATURES *********************
@@ -78,22 +79,52 @@ class Calculator:
 
     # ----------------- TRIG METHODS ------------------
     def sine(self, x):
+        if self.get_current_trig_unit() == 'deg':
+            x = math.radians(x)
         return math.sin(x)
 
     def cosine(self, x):
+        if self.get_current_trig_unit() == 'deg':
+            x = math.radians(x)
         return math.cos(x)
 
     def tangent(self, x):
+        if self.get_current_trig_unit() == 'deg':
+            x = math.radians(x)
         return math.tan(x)
 
     def inverse_sine(self, x):
+        if self.get_current_trig_unit() == 'deg':
+            x = math.radians(x)
         return math.asin(x)
 
     def inverse_cosine(self, x):
+        if self.get_current_trig_unit() == 'deg':
+            x = math.radians(x)
         return math.acos(x)
 
     def inverse_tangent(self, x):
+        if self.get_current_trig_unit() == 'deg':
+            x = math.radians(x)
         return math.atan(x)
+
+    def get_current_trig_unit(self):
+        return self.trig_unit[0]
+
+    def switch_units(self, mode:str=None):
+        if mode is None:
+            self.trig_unit.rotate()
+            return self.get_current_trig_unit()
+        else:
+            return self.__set_new_unit_mode(mode)
+
+    def __set_new_unit_mode(self, mode):
+        if mode not in ('deg', 'rad'):
+            return self.set_error('please enter a valid unit: deg | rad')
+        else:
+            while self.get_current_trig_unit() != mode:
+                self.trig_unit.rotate()
+            return self.get_current_trig_unit()
 
     # ------------------ MEMORY METHODS -------------
     def add_to_memory(self, x):
