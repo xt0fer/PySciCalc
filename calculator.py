@@ -60,3 +60,6 @@ class Calculator:
 
     def switch_units_mode(self, degrees):
         return math.radians(degrees)    
+
+
+print(Calculator.tan(self, 30))
