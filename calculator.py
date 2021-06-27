@@ -11,11 +11,15 @@ class Calculator:
     def subtract(self, x, y):
         return x - y
 
-    def multilpy(self, x, y):
+    def multiply(self, x, y):
         return x*y
 
     def divide(self, x, y):
-        return x / y
+        if y == 0:
+            return('err')
+        else:
+            return x / y
+
 
     def square(self, x):
         return x * x
