@@ -1,11 +1,14 @@
 from display_options import DisplayOptions
 from calculator import Calculator
 from calculator_scientific import sci_Calculator
+import math
 
 #chuck was here
 
-currentState = 0
-=======
+calculator  = Calculator()
+display = DisplayOptions()
+calDisplay = DisplayOptions()
+
 #global variable for display (use global if needed in function)
 
 def getTwoNumbers():
@@ -25,33 +28,24 @@ def getTwoNumbers():
 
 def getOneNumber():
 
-    a = float(input('please enter value\n'))
-=======
-
     #trig functions must be in radians with math.trig functions
     #want to store a radian into a, and if it's a degree, convert it to radian
     
-    a = input('please enter value: ')
+    a = input('please enter value for one number: \n')
     if a == 'display':
         a = calculator.current_state
     else:
         a = float (a)
     return a
 
-
 def getMenuOption():
-    a = str(input("please enter a menu option"))
+    a = input("please enter a menu option\n")
     return a
 
 currentDisplayMode = 'decimal'
 
 
-
-=======
-
-
 def displayResult(x):
-    
     
     if x == 'err':
         print('---',x,'---')
@@ -62,43 +56,70 @@ def displayResult(x):
 
 
 
-def displayDisplay(x):
-    print(x)
 
 def main_menu(calDisplay):
+    #current_menu = 
+    currentTrigMode = 'degrees'
     print('\n1. Switch Display by Choice: \n   display options: decimal, octal, binary, hexadecimal\n   or iterate')
     print('\n2. Switch Trig calculations to Degrees or Radians')
     print('\n3. Do Math')
     print('\n4. Quit')
     while True:
-        menuChoice = input('\n: ').lower()
-        if menuChoice == '4' or 'quit' or 'q':
+        menuChoice = input('Please enter one of the main menu options 1-4. Press 4 to quit from the Main Menu.\n').lower()
+        if menuChoice == '4':# or 'quit' or 'q':
+            print('You selected Menu Choice 4')
             break
         elif menuChoice == '1':
+            print('You selected Menu Choice 1')
+            print('Your current display mode is: '+  calDisplay.currentDisplay  + '. Please select one of the following options:')
+            print('1. Decimal, 2. Octal, 3. binary, 4. hexadecimal, 5. iterate')
             a = getMenuOption()
-            currentMode = displayDisplay(calDisplay.switch_modes(a))
+            calDisplay.switch_modes(a)
+            print('Your current display is: ' + calDisplay.currentDisplay)
+
+
 
         elif menuChoice == '2':
+            print('You selected Menu Choice 2')
+            print('Your current trig measurement is: ' + calDisplay.currentTrig + '. Please select one of the following:')
+            print('1. Degrees, 2. Radians, 3. Iterate')
             a = getMenuOption()
-            currentTrig = displayDisplay(calDisplay.switch_trig(a)) 
+            calDisplay.switch_trig(a)
+            print('Your current trig measurement is: ' + calDisplay.currentTrig)
+        
         elif menuChoice == '3':
-           pass
+            print('You selected Menu Choice 3')
+            print("Performing Calculations\n")
+
+            numberToChange = None
+            if calDisplay.currentDisplay == 'decimal':
+                performCalcLoop(Calculator())
+            elif calDisplay.currentDisplay == 'octal':
+
+                print(calDisplay.currentDisplay)
+                numberToChange = performCalcLoop(Calculator())
+                if numberToChange == None:
+                    pass
+                else:
+                    oct(int(numberToChange))
+            elif calDisplay.currentDisplay == 'binary':
+                if numberToChange == None:
+                    pass
+                else:
+                    bin(int(numberToChange))
+            elif calDisplay.currentDisplay == 'hexadecimal':
+                if numberToChange == None:
+                    pass
+                else:
+                    hex(int(numberToChange))
+
+            #performCalcLoop(Calculator())
+            #print("Leaving Calculations. Back to the main menu\n")
+           
         else:
             print('this is not a valid input')
 
 
-
-
-
-
-
-        
-
-
-
-def switchUnitsMode():
-    a = 'Degrees'
-    b = 'Radians'
 
 #def stateOfDisplay():
     #current_state = 
@@ -108,7 +129,7 @@ def switchUnitsMode():
 def performCalcLoop(calc):
     
     while True:
-        if calculator.current_state == 'err':
+        while calculator.current_state == 'err':
             choice = input("\n: ").lower()
             if choice == 'clear':
                 displayResult(0)
@@ -116,14 +137,16 @@ def performCalcLoop(calc):
                 break
             else:
                 print('---',calculator.current_state,'---')
-                print('clear display')
+                print('please clear display')
 
-        choice = input("\n: ").lower()
+        choice = input("Please enter a math function. Enter q to quit\n").lower()
         
         #commands to run
 
         if choice == 'q':
-            break  # user types q to quit calulator.
+            break  # user types q to quit calculator.
+        elif choice == 'switch':
+            main_menu(DisplayOptions())
         elif choice == 'help':
             print("List of commands:")
             print("'q' for quit")
@@ -136,30 +159,53 @@ def performCalcLoop(calc):
         elif choice == 'add':
             a, b = getTwoNumbers()
             displayResult(calc.add(a, b))
-=======
-            displayResult(0)
-            calculator.current_state = 0    
 
+        #trig functions
 
-        #trig functions    
         elif choice == 'sin':
             a = getOneNumber()
-            displayResult(calc.sin(a))
+            if calDisplay.currentTrig == 'degrees':
+                a = math.radians(a)
+                a = math.degrees(calc.sin(a))
+                displayResult(a)
+            else:    
+                displayResult(calc.sin(a))
         elif choice == 'cos':
             a = getOneNumber()
-            displayResult(calc.cos(a))
+            if calDisplay.currentTrig == 'degrees':
+                a = math.radians(a)
+                a = math.degrees(calc.cos(a))
+                displayResult(a)    
+            else:
+                displayResult(calc.cos(a))
         elif choice == 'tan':
-            a = getOneNumber()
-            displayResult(calc.tan(a))
+            if calDisplay.currentTrig == 'degrees':
+                a = math.radians(a)
+                a = math.degrees(calc.tan(a))
+                displayResult(a)    
+            else:
+                displayResult(calc.tan(a))
         elif choice == 'inverse sin':
-            a = getOneNumber()
-            displayResult(calc.inverse_sin(a))
+            if calDisplay.currentTrig == 'degrees':
+                a = math.radians(a)
+                a = math.degrees(calc.inverse_sin(a))
+                displayResult(a)  
+            else:  
+                displayResult(calc.inverse_sin(a))
         elif choice == 'inverse cos':
-            a = getOneNumber()
-            displayResult(calc.inverse_cos(a))
+            if calDisplay.currentTrig == 'degrees':
+                a = math.radians(a)
+                a = math.degrees(calc.inverse_cos(a))
+                displayResult(a) 
+            else:   
+                displayResult(calc.inverse_cos(a))
         elif choice == 'inverse tan':
-            a = getOneNumber()
-            displayResult(calc.inverse_tan(a))
+            if calDisplay.currentTrig == 'degrees':
+                a = math.radians(a)
+                a = math.degrees(calc.inverse_tan(a))
+                displayResult(a)
+            else:    
+                displayResult(calc.inverse_tan(a))
 
         elif choice == 'subtract':
             a, b = getTwoNumbers()
@@ -196,16 +242,21 @@ def main():
     currentTrig = 'degrees'
     currentDisplayMode = 'decimal'
 
-=======
-    
+    #firstCalculator = display()
+
+    #Here are the following options: ')
+
 
     calc = Calculator()
     calDisplay = DisplayOptions()
-    
-    main_menu()  
-    
-    
-    performCalcLoop(calc)
+
+    print('Your current mode is decimal')
+    print('Your current TrigMeasurement is radian')
+    print('\nWelcome to our Calculator!')
+
+    displayResult(0)
+
+    main_menu(calDisplay)  
     
     print('\n\nthis is the best calculator :)\n')
     

@@ -57,4 +57,3 @@ class Calculator:
         return math.radians(degrees)    
 
 
-print(Calculator.tan(self, 30))
