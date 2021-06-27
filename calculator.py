@@ -1,10 +1,13 @@
 import math
+from collections import deque
 
 
 class Calculator:
 
     def __init__(self):
-        self.__state = 0
+        self.state = 0
+        self.display_q = deque(['dec', 'bin', 'oct', 'hex'])
+        self.display_mode = self.display_q[0]
 
     def add(self, x, y):
         return x + y
@@ -14,15 +17,24 @@ class Calculator:
 
     # MY METHODS
     def set_state(self, x):
-        self.__state = x
+        self.state = x
 
     def get_state(self):
-        return self.__state
+        return self.state
+
+    def show_current_display_mode(self):
+        return self.display_mode
+
+    def switch_display_mode(self):
+        self.display_q.rotate()
+        self.display_mode = self.display_q[0]
 
     def multiply(self, x, y):
         return x * y
 
     def divide(self, x, y):
+        if x == 0 or y == 0:
+            return 'err'
         return x / y
 
     def square(self, x):
