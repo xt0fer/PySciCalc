@@ -6,6 +6,7 @@ class Calculator:
     def __init__(self):
         self.state = 0
         self.first_run = True
+        self.trig_mode = 'degrees'
 
     def get_state(self):
         return self.state
@@ -56,41 +57,50 @@ class Calculator:
     def get_display(self):
         return self.display
 
-    def sine(self, x, mode):
-        if mode == "degrees":
+    def sine(self, x):
+        if self.trig_mode == "degrees":
             return math.sin(math.radians(x))
         else:
             return math.sin(x)
 
-    def cosine(self, x, mode):
-        if mode == "degrees":
+    def cosine(self, x):
+        if self.trig_mode == "degrees":
             return math.cos(math.radians(x))
         else:
             return math.cos(x)
 
-    def tangent(self, x, mode):
-        if mode == "degrees":
+    def tangent(self, x):
+        if self.trig_mode == "degrees":
             return math.tan(math.radians(x))
         else:
             return math.tan(x)
 
-    def inverse_sine(self, x, mode):
-        if mode == "degrees":
+    def inverse_sine(self, x):
+        if self.trig_mode == "degrees":
             return math.asin(math.radians(x))
         else:
             return math.asin(x)
 
-    def inverse_cosine(self, x, mode):
-        if mode == "degrees":
+    def inverse_cosine(self, x):
+        if self.trig_mode == "degrees":
             return math.acos(math.radians(x))
         else:
             return math.acos(x)
 
-    def inverse_tangent(self,x, mode):
-        if mode == "degrees":
+    def inverse_tangent(self, x):
+        if self.trig_mode == "degrees":
             return math.atan(math.radians(x))
         else:
             return math.atan(x)
+    
+    def get_current_trig_unit(self):
+        return self.trig_mode
+
+    def toggle_trig_unit(self):
+        if self.trig_mode == 'radians':
+            self.trig_mode = 'degrees' 
+        else:
+            self.trig_mode = 'radians'
 
     def factorial(self, x):
         return math.factorial(x)

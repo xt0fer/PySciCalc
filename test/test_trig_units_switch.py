@@ -5,11 +5,11 @@ from calculator import Calculator
 
 class TestTrigUnitSwitch(TestCase):
 
-    def __switch_test(self, calc_object, tests):  # This tests switch display WITH NO arguments
+    def __toggle_test(self, calc_object, tests):  # This tests switch display WITH NO arguments
         for expected_mode in tests:
             current_mode = calc_object.get_current_trig_unit()
             error_message = self.__return_calc_error(current_mode, expected_mode)
-            calc_object.switch_units()
+            calc_object.toggle_trig_unit()
             self.assertEqual(current_mode, expected_mode, error_message)
 
     def __set_test(self, calc_object, tests):  # This tests switch display mode WITH arguments
@@ -26,9 +26,9 @@ class TestTrigUnitSwitch(TestCase):
         return result
 
     # TWO ARG TESTS
-    def test_trig_unit_switch(self):
+    def test_trig_unit_toggle(self):
         c = Calculator() # these are the expected ouputs
-        self.__switch_test(c, ['deg', 'rad', 'deg', 'rad', 'deg', 'rad'])
+        self.__toggle_test(c, ['degrees', 'radians', 'degrees', 'radians', 'degrees', 'radians'])
 
     def test_trig_unit_set(self):
         c = Calculator()
