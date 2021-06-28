@@ -28,6 +28,12 @@ class Calculator:
     def square_root(self, x):
         return math.sqrt(x)
 
+    def factorial(self, x):
+        return math.factorial(x)
+
+    def variable_exponentiation(self, x, y):
+        return math.pow(x,y)
+
     #trig functions
 
     def sin(self, radians):
