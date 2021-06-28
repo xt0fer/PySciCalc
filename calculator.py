@@ -1,12 +1,65 @@
-class Calculator:
+import math
 
+
+class Calculator:
+    
     def __init__(self):
-        pass
+        self.current_state = None
+        
 
     def add(self, x, y):
         return x + y
 
-    def sub(self, x, y):
-        return 0
+    def subtract(self, x, y):
+        return x - y
 
-# add lots more methods to this calculator class.
+    def multiply(self, x, y):
+        return x*y
+
+    def divide(self, x, y):
+        if y == 0:
+            return('err')
+        else:
+            return x / y
+
+    def square(self, x):
+        return x * x
+
+    def square_root(self, x):
+        return math.sqrt(x)
+
+    def factorial(self, x):
+        return math.factorial(x)
+
+    def variable_exponentiation(self, x, y):
+        return math.pow(x,y)
+
+    #trig functions
+
+    def sin(self, radians):
+        return math.sin(radians)
+    
+    def cos(self, radians):
+        return math.cos(radians)
+    
+    def tan(self, radians):
+        return math.tan(radians)
+
+    def inverse_sin(self, radians):
+        return math.asin(radians)
+
+    def inverse_cos(self, radians):
+        return math.acos(radians)
+    
+    def inverse_tan(self, radians):
+        return math.atan(radians)
+
+    #convert to radians or degrees on screen
+
+    def switch_units_mode(self, radians):
+        return math.degrees(radians)
+
+    def switch_units_mode(self, degrees):
+        return math.radians(degrees)    
+
+
