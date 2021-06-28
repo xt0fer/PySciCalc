@@ -1,6 +1,7 @@
 from display_options import DisplayOptions
 from calculator import Calculator
-from calculator_scientific import sci_Calculator
+#from calculator_scientific import sci_Calculator
+from memoryOptions import Memory
 import math
 
 #chuck was here
@@ -8,6 +9,7 @@ import math
 calculator  = Calculator()
 display = DisplayOptions()
 calDisplay = DisplayOptions()
+mem = Memory()
 
 #global variable for display (use global if needed in function)
 
@@ -42,8 +44,6 @@ def getMenuOption():
     a = input("please enter a menu option\n")
     return a
 
-currentDisplayMode = 'decimal'
-
 
 def displayResult(x):
     
@@ -59,7 +59,7 @@ def displayResult(x):
 
 def main_menu(calDisplay):
     #current_menu = 
-    currentTrigMode = 'degrees'
+    #currentTrigMode = 'degrees'
     print('\n1. Switch Display by Choice: \n   display options: decimal, octal, binary, hexadecimal\n   or iterate')
     print('\n2. Switch Trig calculations to Degrees or Radians')
     print('\n3. Do Math')
@@ -128,6 +128,7 @@ def main_menu(calDisplay):
 
 def performCalcLoop(calc):
     
+    print("calculator is in: " + display.currentTrig)
     while True:
         while calculator.current_state == 'err':
             choice = input("\n: ").lower()
@@ -139,7 +140,7 @@ def performCalcLoop(calc):
                 print('---',calculator.current_state,'---')
                 print('please clear display')
 
-        choice = input("Please enter a math function. Enter q to quit\n").lower()
+        choice = input("Please enter a math function. Enter help for options. Enter q for the main menu\n").lower()
         
         #commands to run
 
@@ -153,56 +154,67 @@ def performCalcLoop(calc):
             print("'clear' set display to 0")
             print("'display' to use number in display")
             print("Operations: 'add', 'subtract', 'multiply', 'divide', 'square', 'square root', 'inverse', factorial")
+            print("1. M+, 2. MC, 3. MRC")
         elif choice == 'clear':
 
             displayResult(0)    
         elif choice == 'add':
             a, b = getTwoNumbers()
             displayResult(calc.add(a, b))
+        elif choice == '1':
+            mem.memoryAdd(calculator.current_state)
+        elif choice == '2':
+            mem.memoryClear()
+        elif choice == '3':
+            mem.memoryRecall()
+            print("Memory Value: " + str(mem.memoryValue))
 
         #trig functions
 
         elif choice == 'sin':
+            print('current display is: ' + calDisplay.currentTrig)
             a = getOneNumber()
             if calDisplay.currentTrig == 'degrees':
+                
                 a = math.radians(a)
-                a = math.degrees(calc.sin(a))
+                a = calc.sin(a)
                 displayResult(a)
             else:    
+                print('radians mode: ')
                 displayResult(calc.sin(a))
         elif choice == 'cos':
             a = getOneNumber()
             if calDisplay.currentTrig == 'degrees':
                 a = math.radians(a)
-                a = math.degrees(calc.cos(a))
+                a = calc.cos(a)
                 displayResult(a)    
             else:
                 displayResult(calc.cos(a))
         elif choice == 'tan':
             if calDisplay.currentTrig == 'degrees':
                 a = math.radians(a)
-                a = math.degrees(calc.tan(a))
+                a = calc.tan(a)
                 displayResult(a)    
             else:
                 displayResult(calc.tan(a))
         elif choice == 'inverse sin':
             if calDisplay.currentTrig == 'degrees':
                 a = math.radians(a)
-                a = math.degrees(calc.inverse_sin(a))
+                a = calc.inverse_sin(a)
                 displayResult(a)  
             else:  
                 displayResult(calc.inverse_sin(a))
         elif choice == 'inverse cos':
             if calDisplay.currentTrig == 'degrees':
                 a = math.radians(a)
-                a = math.degrees(calc.inverse_cos(a))
+                a = calc.inverse_cos(a)
                 displayResult(a) 
             else:   
                 displayResult(calc.inverse_cos(a))
         elif choice == 'inverse tan':
             if calDisplay.currentTrig == 'degrees':
                 a = math.radians(a)
-                a = math.degrees(calc.inverse_tan(a))
+                a = calc.inverse_tan(a)
                 displayResult(a)
             else:    
                 displayResult(calc.inverse_tan(a))
