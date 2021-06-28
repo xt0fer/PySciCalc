@@ -1,21 +1,20 @@
-
-
-from math import sqrt
 from calculator import Calculator
 
 
-def getTwoNumbers():
-    a = float(input("first number? "))
-    b = float(input("second number? "))
+def get_two_numbers():
+    a = float(input("Enter first number: "))
+    b = float(input("Enter second number: "))
     return a, b
 
-def getOneNumber():
-    c = float(input("enter number"))
+
+def get_one_number():
+    c = float(input("Enter a number: "))
     return c
 
 
-def displayResult(x: float):
-    print(x, "\n")
+def displayResult(x):
+    print('----------------------------')
+    print(x)
 
 
 def displayMenu():
@@ -25,7 +24,7 @@ def displayMenu():
     print("Enter (-) for Subtraction")
     print("Enter (*) for Multiplication")
     print("Enter (/) for Division")
-    print("enter ('p') to the ^ power")
+    print("enter ('e') for exponentiate")
     print("enter ('s') for squared")
     print("Enter ('n') for Neg/Pos" )
     print("Enter ('i') for Inverse")
@@ -35,56 +34,77 @@ def displayMenu():
     print("----------------------------")
 
 def performCalcLoop(calc):
+    displayResult(0)   # First run, display 0
+    # MAIN LOOP
+    a = 0
+    b = 0
     while True:
         displayMenu()
-
-        choice = input("Hello make a selection ")
+        choice = input("Select Operation: ")
         if choice == 'q':
             break  # user types q to quit calulator.
         elif choice == '+':
-            a, b = getTwoNumbers()
-            displayResult(calc.add(a, b))
-
+            if calc.first_run:
+                a, b = get_two_numbers()
+            else:
+                a = calc.get_state()
+                b = get_one_number()
+            calc.set_state(calc.add(a, b))
+            displayResult(calc.get_state())
         elif choice == '-':
-           a,b = getTwoNumbers()
-           displayResult(a-b)
-        
+            if calc.first_run:
+                a, b = get_two_numbers()
+            else:
+                a = calc.get_state()
+                b = get_one_number()
+            calc.set_state(calc.subtract(a, b))
+            displayResult(calc.get_state())
         elif choice == '*':
-            a,b = getTwoNumbers()
-            displayResult (a*b)
-
+            if calc.first_run:
+                a, b = get_two_numbers()
+            else:
+                a = calc.get_state()
+                b = get_one_number()
+            calc.set_state(calc.add(a, b))
+            displayResult(calc.get_state())
         elif choice == '/':
-            a,b = getTwoNumbers()
-            if b == 0:
-                displayResult("[-] Error: Cannot divide by zero")
+            if calc.first_run:
+                a, b = get_two_numbers()
             else:
-                displayResult(a/b)
-                 
-        elif choice == 'p':
-            a,b = getTwoNumbers()
-            displayResult(a**b)
-
-        elif choice == 'sq':
-            c = getOneNumber()
-            displayResult(sqrt(c))
-        
-        elif choice == 'n':
-            c = getOneNumber()
-            displayResult(-c)
-
-        elif choice == 'i':
-            c = getOneNumber()
-            if c == 0:
-                displayResult("error cannot use 0")
+                a = calc.get_state()
+                b = get_one_number()
+            calc.set_state(calc.divide(a, b))
+            displayResult(calc.get_state())
+        elif choice == 'e':
+            if calc.first_run:
+                a, b = get_two_numbers()
             else:
-                displayResult(1/c)
-        
+                a = calc.get_state()
+                b = get_one_number()
+            calc.set_state(calc.exponentiate(a, b))
+            displayResult(calc.get_state())
         elif choice == 's':
-            c = getOneNumber()
-            displayResult(c**2)
-
+            a = calc.get_state()
+            calc.set_state(calc.square(a))
+            displayResult(calc.get_state())
+        elif choice == 'n':
+            a = calc.get_state()
+            calc.set_state(calc.invert_sign(a))
+            displayResult(calc.get_state())
+        elif choice == 'i':
+            a = calc.get_state()
+            calc.set_state(calc.inverse(a))
+            displayResult(calc.get_state())
+        elif choice == 'sq':
+            a = calc.get_state()
+            calc.set_state(calc.square(a))
+            displayResult(calc.get_state())
+        elif choice == 'c':
+            calc.set_state(0)
+            displayResult(0)
         else:
             print("That is not a valid input.")
+        calc.first_run = False
 
 
 # main start

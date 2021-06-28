@@ -4,7 +4,14 @@ import math
 class Calculator:
 
     def __init__(self):
-        self.display = 0
+        self.state = 0
+        self.first_run = True
+
+    def get_state(self):
+        return self.state
+
+    def set_state(self, x):
+        self.state = x
 
     def add(self, x, y):
         return x + y
@@ -30,6 +37,8 @@ class Calculator:
         return x ** y
 
     def inverse(self, x):
+        if x == 0:
+            return 'cannot divide by 0'
         return 1/x
 
     def invert_sign(self, x):
